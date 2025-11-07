@@ -1,0 +1,29 @@
+# .gitpod.yml
+image: gitpod/workspace-full
+
+tasks:
+  - name: Install dependencies
+    init: |
+      npm install
+      npx playwright install
+    command: echo "Dependencies installed."
+
+  - name: Run Playwright tests on LambdaTest
+    command: |
+      echo "Running Playwright tests on LambdaTest..."
+      npx playwright test
+
+vscode:
+  extensions:
+    - ms-playwright.playwright
+
+# Environment variables for LambdaTest
+# You should set these in Gitpod dashboard for security
+# or use a .env file
+# env:
+#   LT_USERNAME: "your_lambdatest_username"
+#   LT_ACCESS_KEY: "your_lambdatest_access_key"
+
+ports:
+  - port: 9222
+    onOpen: open-preview
